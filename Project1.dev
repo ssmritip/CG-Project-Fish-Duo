@@ -24,7 +24,7 @@ HostApplication=
 UseCustomMakefile=0
 CustomMakefile=
 CommandLine=
-Folders=
+Folders=Components
 IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=3
@@ -63,7 +63,7 @@ BuildCmd=
 [Unit2]
 FileName=DataSource.h
 CompileCpp=1
-Folder=
+Folder=Components
 Compile=1
 Link=1
 Priority=1000
@@ -73,7 +73,7 @@ BuildCmd=
 [Unit3]
 FileName=Translate.h
 CompileCpp=1
-Folder=
+Folder=Components
 Compile=1
 Link=1
 Priority=1000
@@ -83,7 +83,7 @@ BuildCmd=
 [Unit4]
 FileName=DrawCurve.h
 CompileCpp=1
-Folder=
+Folder=Components
 Compile=1
 Link=1
 Priority=1000
@@ -93,7 +93,7 @@ BuildCmd=
 [Unit5]
 FileName=Display.h
 CompileCpp=1
-Folder=
+Folder=Components
 Compile=1
 Link=1
 Priority=1000
