@@ -37,3 +37,67 @@ void fish(GLfloat upperCurve[3][3], GLfloat lowerCurve[3][3], float x, float y, 
     glVertex2f(upperCurve[0][0] + 2 + y, upperCurve[0][1] + 0.2);
     glEnd();
 }
+
+void drawTank(GLfloat tank[4][2]){
+	glLineWidth(2);
+	glBegin(GL_LINES);
+		glColor3f(0, 0, 0);
+		glVertex2fv(tank[0]); glVertex2fv(tank[1]);
+		glVertex2fv(tank[1]); glVertex2fv(tank[2]);
+		glVertex2fv(tank[2]); glVertex2fv(tank[3]);
+		glVertex2fv(tank[0]); glVertex2fv(tank[3]);
+	glEnd();
+}
+
+void rect(GLfloat V[4][2], GLfloat R, GLfloat G, GLfloat B){
+	glBegin(GL_POLYGON);
+		glColor3f(R, G, B);
+		glVertex2fv(V[0]);
+		glVertex2fv(V[1]);
+		glVertex2fv(V[2]);
+		glVertex2fv(V[3]);
+	glEnd();
+}
+//Table surface part
+void drawSurface(GLfloat TC[4][2],GLfloat TT[4][2]){
+	glColor3f(0.7, 0.4, 0);
+	glBegin(GL_TRIANGLES);
+		glVertex2fv(TT[1]);
+		glVertex2f(TC[0][0],TC[0][1]+1);
+		glVertex2f(TC[0][0],TC[0][1]-0.5);
+	glEnd();
+	glBegin(GL_TRIANGLES);
+		glVertex2fv(TT[2]);
+		glVertex2f(TC[3][0],TC[3][1]+1);
+		glVertex2f(TC[3][0],TC[3][1]-0.5);
+	glEnd();
+	glBegin(GL_POLYGON);
+		glVertex2f(TC[0][0],TC[0][1]); 
+		glVertex2f(TC[0][0],TC[0][1]-0.5);
+		glVertex2f(TC[3][0],TC[3][1]-0.5);
+		glVertex2f(TC[3][0],TC[3][1]); 
+	glEnd();
+}
+
+void tankTable(){
+	glLoadIdentity();
+	drawTank(tankCoord);
+	//table top
+	drawSurface(tankCoord,tableTop);
+	rect(tableTop, 0, 0, 0);
+	//table legs 
+	rect(tableLeg, 0, 0, 0);	//Left Front Leg
+	
+	glTranslatef(shift[0], 0, 1);
+	rect(tableLeg, 0, 0, 0);	//Right Front Leg
+
+	glLoadIdentity();
+	glTranslatef(shift[1], 0, 1);
+	glScalef(1, sy, 1);
+	rect(tableLeg, 0, 0, 0);	//Left Back Leg
+
+	glLoadIdentity();
+	glTranslatef(shift[2], 0, 1);
+	glScalef(1, sy, 1);
+	rect(tableLeg, 0, 0, 0);	//Right Back Leg
+}

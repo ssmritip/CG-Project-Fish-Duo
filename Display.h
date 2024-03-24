@@ -15,6 +15,9 @@ void display() {
 	
     //glColor3f(0.0, 1.0, 0.0);
     translate(upperCurve2, lowerCurve2, u2, l2, 0);
+    
+    glLoadIdentity();
+    tankTable();
 	glutSwapBuffers();
     glFlush();
 }

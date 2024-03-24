@@ -86,3 +86,4 @@ void translate(GLfloat upperCurve[3][3], GLfloat lowerCurve[3][3], float tCurve1
 		fish(uCurve, lCurve, -1.0, y, color);
 	}	
 }
+
