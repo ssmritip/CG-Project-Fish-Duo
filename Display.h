@@ -11,10 +11,10 @@ void display() {
 
 	//glColor3f(0.0, 0.0, 1.0);
 
-    translate(upperCurve1, lowerCurve1, u1, l1, -80);
+    translate(upperCurve1, lowerCurve1, u1, l1, -30, -0.49);
 	
     //glColor3f(0.0, 1.0, 0.0);
-    translate(upperCurve2, lowerCurve2, u2, l2, 0);
+    translate(upperCurve2, lowerCurve2, u2, l2, 30, -0.21);
     
     glLoadIdentity();
     tankTable();

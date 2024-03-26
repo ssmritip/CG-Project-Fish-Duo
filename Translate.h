@@ -1,9 +1,9 @@
 #include "Draw.h"
 float t = 0; // translation vector
 bool s = true; // flag for direction
-void translate(GLfloat upperCurve[3][3], GLfloat lowerCurve[3][3], float tCurve1[3][3], float tCurve2[3][3], float color){
+void translate(GLfloat upperCurve[3][3], GLfloat lowerCurve[3][3], float tCurve1[3][3], float tCurve2[3][3], float color, float y){
 	float uCurve[3][3], lCurve[3][3], u[3][3], l[3][3]; 
-	int i, j, k, y;
+	int i, j, k;
 	
 	float tp[3][3] ={{1, 0, t},
 					 {0, 1, 0},
@@ -13,9 +13,9 @@ void translate(GLfloat upperCurve[3][3], GLfloat lowerCurve[3][3], float tCurve1
 					 {0, 0, 1}};
 					 
 		
-	if(t < TANK_RIGHT && s == true){
-		t = t + 0.001;
-		y = 0;
+	if(t < TANK_RIGHT - 0.3 && s == true){
+		t = t + 0.0009;
+		y = y;
 		for (i = 0; i < 3; ++i){ //transpose original curve
 			for (j = 0; j < 3; ++j) {
 	    		u[j][i] = upperCurve[i][j];
@@ -42,13 +42,13 @@ void translate(GLfloat upperCurve[3][3], GLfloat lowerCurve[3][3], float tCurve1
 		}
 		if(t == TANK_RIGHT)
 		s = false;
-		fish(tCurve1, tCurve2, 1.0, y, color);
+		fish(tCurve1, tCurve2, 0.5, y, color);
 	}
 	
-	else if(t > TANK_LEFT){
+	else if(t > TANK_LEFT - 0.3){
 		s = false;
-		t = t - 0.001;
-		y = -4;
+		t = t - 0.0009;
+		y = -y - 4;
 		for (i = 0; i < 3; ++i){ //transpose original curve
 			for (j = 0; j < 3; ++j) {
 	    		u[j][i] = tCurve1[i][j];
@@ -83,7 +83,7 @@ void translate(GLfloat upperCurve[3][3], GLfloat lowerCurve[3][3], float tCurve1
 	    		lCurve[j][i] = l[i][j];
 	   		}
 		}
-		fish(uCurve, lCurve, -1.0, y, color);
+		fish(uCurve, lCurve, -0.5, y, color);
 	}	
 }
 

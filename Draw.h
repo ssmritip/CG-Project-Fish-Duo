@@ -6,7 +6,7 @@ void drawCurve(GLfloat curve[3][3], float color) {
         a = color / 80;
         float x = (1 - u) * (1 - u) * curve[0][0] + 2 * (1 - u) * u * curve[1][0] + u * u * curve[2][0];
         float y = (1 - u) * (1 - u) * curve[0][1] + 2 * (1 - u) * u * curve[1][1] + u * u * curve[2][1];
-        glColor3f(1.0 - color/20, 0.0 + a, 0.2);
+        glColor3f(1 - color*a/300, 0.0 + a*a, 0.4-a);
 		glVertex2f(x, y);
 		color += 1;
     }
@@ -25,7 +25,7 @@ void fish(GLfloat upperCurve[3][3], GLfloat lowerCurve[3][3], float x, float y, 
     glEnd();
     
     glPointSize(5.0);
-    glColor3f(0.0, 1.0, 0.0);
+    glColor3f(0.5, 0.6, 0.8);
 	glBegin(GL_POINTS);
     glVertex2fv(upperCurve[0]);
     glEnd();
