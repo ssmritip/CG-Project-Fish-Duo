@@ -1,3 +1,4 @@
+#include<math.h>
 void drawCurve(GLfloat curve[3][3], float color) { 
     glBegin(GL_TRIANGLE_FAN);
     float a;
@@ -11,6 +12,61 @@ void drawCurve(GLfloat curve[3][3], float color) {
 		color += 1;
     }
     glEnd(); 
+}
+void drawGrass(Grass g){
+	glBegin(GL_LINE_STRIP);
+	for (int i = 0; i <= 100; i++) {
+        float u = i / 100.0;
+        float x1 = pow((1-u),3)*g.vertexTipx + 3*pow((1-u),2)*u*g.vertexL1x + 3*u*u*(1 - u)*g.vertexL2y + pow(u, 3) * g.vertexBase1x;
+        float y1 = pow((1-u),3)*g.vertexTipy + 3*pow((1-u),2)*u*g.vertexL1x + 3*u*u*(1 - u)*g.vertexL2y + pow(u, 3) * g.vertexBase1y;
+        
+        float x2 = pow((1-u),3)*g.vertexTipx + 3*pow((1-u),2)*u*g.vertexR1x + 3*u*u*(1 - u)*g.vertexR2y + pow(u, 3) * g.vertexBase2x;
+        float y2 = pow((1-u),3)*g.vertexTipy + 3*pow((1-u),2)*u*g.vertexR1x + 3*u*u*(1 - u)*g.vertexR2y + pow(u, 3) * g.vertexBase2y;
+        glColor3f(0.0, 0.6, 0.0);
+		glVertex2f(x1, y1);
+		glVertex2f(x2, y2);
+    }
+    glEnd();
+}
+void grass(){
+	Grass g1(0.15, 2, -0.3, 1.5 , 5.7, 1);
+	drawGrass(g1);
+	
+	Grass g2(g1);
+	g2.translateX(1.0);
+	drawGrass(g2);
+	
+	Grass g3(g1);
+	g3.translateX(1.2);
+	drawGrass(g3);
+	
+	Grass g4(g1);
+	g4.translateX(-1.2);
+	drawGrass(g4);
+	
+	Grass g5(g1);
+	g5.translateX(1.4);
+	drawGrass(g5);
+	
+	Grass g6(-1.68, 2.5, -1.3, 1.5 , 5.7, 1);
+	//Grass g6(-4.68, 2, -4.3, 1 , -3.7, 1.5);
+	g6.changeBase(-3, -3.1);
+	drawGrass(g6);
+	
+	Grass g7(0.68, 2.5, -0.3, 1.5 , 5.7, 1);
+	g7.translateX(-2);
+	drawGrass(g7);
+	
+	Grass g8(0.68, 2.5, -0.3, 1.5 , 5.7, 1);
+	drawGrass(g8);
+	
+	Grass g9(-2.68, 2.5, -2.3, 1.5 , 5.7, 1);
+	g9.changeBase(-5, -5.1);
+	drawGrass(g9);
+	
+//	Grass g10(-1.68, 1.5, -3.3, 1.5 , 0.7, 1);
+//	g10.changeBase(-5, -5.1);
+//	drawGrass(g10);
 }
 void fish(GLfloat upperCurve[3][3], GLfloat lowerCurve[3][3], float x, float y, float color){
 	// Draw upper and lower curves
