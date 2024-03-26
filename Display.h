@@ -1,5 +1,6 @@
 #include "DataSource.h"
 #include "Translate.h"
+#include<iostream>
 void display() {
     glClearColor(1.0, 1.0, 1.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -15,7 +16,7 @@ void display() {
 	
     //glColor3f(0.0, 1.0, 0.0);
     translate(upperCurve2, lowerCurve2, u2, l2, 30, -0.21);
-    
+    grass();
     glLoadIdentity();
     tankTable();
 	glutSwapBuffers();

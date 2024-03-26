@@ -1,3 +1,4 @@
+#include<math.h>
 void drawCurve(GLfloat curve[3][3], float color) { 
     glBegin(GL_TRIANGLE_FAN);
     float a;
@@ -11,6 +12,61 @@ void drawCurve(GLfloat curve[3][3], float color) {
 		color += 1;
     }
     glEnd(); 
+}
+void drawGrass(Grass g){
+	glBegin(GL_LINE_STRIP);
+	for (int i = 0; i <= 100; i++) {
+        float u = i / 100.0;
+        float x1 = pow((1-u),3)*g.vertexTipx + 3*pow((1-u),2)*u*g.vertexL1x + 3*u*u*(1 - u)*g.vertexL2y + pow(u, 3) * g.vertexBase1x;
+        float y1 = pow((1-u),3)*g.vertexTipy + 3*pow((1-u),2)*u*g.vertexL1x + 3*u*u*(1 - u)*g.vertexL2y + pow(u, 3) * g.vertexBase1y;
+        
+        float x2 = pow((1-u),3)*g.vertexTipx + 3*pow((1-u),2)*u*g.vertexR1x + 3*u*u*(1 - u)*g.vertexR2y + pow(u, 3) * g.vertexBase2x;
+        float y2 = pow((1-u),3)*g.vertexTipy + 3*pow((1-u),2)*u*g.vertexR1x + 3*u*u*(1 - u)*g.vertexR2y + pow(u, 3) * g.vertexBase2y;
+        glColor3f(0.0, 0.6, 0.0);
+		glVertex2f(x1, y1);
+		glVertex2f(x2, y2);
+    }
+    glEnd();
+}
+void grass(){
+	Grass g1(0.15, 2, -0.3, 1.5 , 5.7, 1);
+	drawGrass(g1);
+	
+	Grass g2(g1);
+	g2.translateX(1.0);
+	drawGrass(g2);
+	
+	Grass g3(g1);
+	g3.translateX(1.2);
+	drawGrass(g3);
+	
+	Grass g4(g1);
+	g4.translateX(-1.2);
+	drawGrass(g4);
+	
+	Grass g5(g1);
+	g5.translateX(1.4);
+	drawGrass(g5);
+	
+	Grass g6(-1.68, 2.5, -1.3, 1.5 , 5.7, 1);
+	//Grass g6(-4.68, 2, -4.3, 1 , -3.7, 1.5);
+	g6.changeBase(-3, -3.1);
+	drawGrass(g6);
+	
+	Grass g7(0.68, 2.5, -0.3, 1.5 , 5.7, 1);
+	g7.translateX(-2);
+	drawGrass(g7);
+	
+	Grass g8(0.68, 2.5, -0.3, 1.5 , 5.7, 1);
+	drawGrass(g8);
+	
+	Grass g9(-2.68, 2.5, -2.3, 1.5 , 5.7, 1);
+	g9.changeBase(-5, -5.1);
+	drawGrass(g9);
+	
+//	Grass g10(-1.68, 1.5, -3.3, 1.5 , 0.7, 1);
+//	g10.changeBase(-5, -5.1);
+//	drawGrass(g10);
 }
 void fish(GLfloat upperCurve[3][3], GLfloat lowerCurve[3][3], float x, float y, float color){
 	// Draw upper and lower curves
@@ -38,7 +94,7 @@ void fish(GLfloat upperCurve[3][3], GLfloat lowerCurve[3][3], float x, float y, 
     glEnd();
 }
 
-void drawTank(GLfloat tank[4][2]){
+void drawTank(GLfloat tank[4][2],GLfloat tank1[4][2]){
 	glLineWidth(2);
 	glBegin(GL_LINES);
 		glColor3f(0, 0, 0);
@@ -46,6 +102,16 @@ void drawTank(GLfloat tank[4][2]){
 		glVertex2fv(tank[1]); glVertex2fv(tank[2]);
 		glVertex2fv(tank[2]); glVertex2fv(tank[3]);
 		glVertex2fv(tank[0]); glVertex2fv(tank[3]);
+		
+		glVertex2fv(tank1[0]); glVertex2fv(tank1[1]);
+		glVertex2fv(tank1[1]); glVertex2fv(tank1[2]);
+		glVertex2fv(tank1[2]); glVertex2fv(tank1[3]);
+		glVertex2fv(tank1[0]); glVertex2fv(tank1[3]);
+		
+		glVertex2fv(tank[0]); glVertex2fv(tank1[0]);
+		glVertex2fv(tank[1]); glVertex2fv(tank1[1]);
+		glVertex2fv(tank[2]); glVertex2fv(tank1[2]);
+		glVertex2fv(tank[3]); glVertex2fv(tank1[3]);
 	glEnd();
 }
 
@@ -61,29 +127,18 @@ void rect(GLfloat V[4][2], GLfloat R, GLfloat G, GLfloat B){
 //Table surface part
 void drawSurface(GLfloat TC[4][2],GLfloat TT[4][2]){
 	glColor3f(0.7, 0.4, 0);
-	glBegin(GL_TRIANGLES);
-		glVertex2fv(TT[1]);
-		glVertex2f(TC[0][0],TC[0][1]+1);
-		glVertex2f(TC[0][0],TC[0][1]-0.5);
-	glEnd();
-	glBegin(GL_TRIANGLES);
-		glVertex2fv(TT[2]);
-		glVertex2f(TC[3][0],TC[3][1]+1);
-		glVertex2f(TC[3][0],TC[3][1]-0.5);
-	glEnd();
 	glBegin(GL_POLYGON);
-		glVertex2f(TC[0][0],TC[0][1]); 
-		glVertex2f(TC[0][0],TC[0][1]-0.5);
-		glVertex2f(TC[3][0],TC[3][1]-0.5);
-		glVertex2f(TC[3][0],TC[3][1]); 
+		glVertex2fv(TT[1]); 
+		glVertex2f(TC[0][0]+0.5,TC[0][1]+0.65);
+		glVertex2f(TC[3][0]-0.5,TC[3][1]+0.65);
+		glVertex2fv(TT[2]); 
 	glEnd();
 }
 
 void tankTable(){
-	glLoadIdentity();
-	drawTank(tankCoord);
 	//table top
 	drawSurface(tankCoord,tableTop);
+	drawTank(tankCoord,tankCoord1);
 	rect(tableTop, 0, 0, 0);
 	//table legs 
 	rect(tableLeg, 0, 0, 0);	//Left Front Leg
