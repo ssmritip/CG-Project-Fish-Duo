@@ -1,10 +1,13 @@
 #define TANK_RIGHT 3.5
 #define TANK_LEFT 0
-GLfloat upperCurve1[3][3] = { {-1.5, 5.5, 1.0}, {-0.3, 6.5, 1.0}, {0.5, 5.5, 1.0} };
-GLfloat lowerCurve1[3][3] = { {-1.5, 5.5, 1.0}, {-0.3, 4.5, 1.0}, {0.5, 5.5, 1.0} };
 
-GLfloat upperCurve2[3][3] = { {-1.3, 3.0, 1.0}, {0.0, 4.0, 1.0}, {1.3, 3.0, 1.0} };
-GLfloat lowerCurve2[3][3] = { {-1.3, 3.0, 1.0}, {0.0, 2.0, 1.0}, {1.3, 3.0, 1.0} };
+// coordinates of fish 1
+GLfloat upperCurve1[3][3] = { {-2.5, 5, 1.0}, {-1.5, 6.2, 1.0}, {-0.5, 5, 1.0} };
+GLfloat lowerCurve1[3][3] = { {-2.5, 5, 1.0}, {-1.5, 3.8, 1.0}, {-0.5, 5, 1.0} };
+
+// coordinates of fish 2
+GLfloat upperCurve2[3][3] = { {-1.3, 3.0, 1.0}, {0.0, 4.15, 1.0}, {1.3, 3.0, 1.0} };
+GLfloat lowerCurve2[3][3] = { {-1.3, 3.0, 1.0}, {0.0, 1.75, 1.0}, {1.3, 3.0, 1.0} };
 float u1[3][3], l1[3][3], u2[3][3], l2[3][3]; // temporary empty matrices
 
 GLfloat tankCoord[4][2] = {{-5.25, 0.18},	//front glass
@@ -28,8 +31,8 @@ GLfloat tankCoord[4][2] = {{-5.25, 0.18},	//front glass
 class Grass{
 	public:
 	float vertexTipx, vertexTipy;
-	float vertexBase1x = -0.05, vertexBase1y = 0.0;
-	float vertexBase2x = 0.5, vertexBase2y = 0.0;
+	float vertexBase1x = 0, vertexBase1y = 0.6;
+	float vertexBase2x = 0.2, vertexBase2y = 0.6;
 	float vertexL1x, vertexL2x, vertexR1x, vertexR2x,
 		vertexL1y, vertexL2y, vertexR1y, vertexR2y;
 	
@@ -48,7 +51,7 @@ class Grass{
 			
 	        vertexR1x = vertexL1x + 0.2;
 			vertexR1y = vertexL1y;
-			vertexR2x = vertexL2x + 0.9;
+			vertexR2x = vertexL2x + 0.2;
 			vertexR2y = vertexL2y;
 		}
 		Grass copy(Grass &other){ 
@@ -67,7 +70,7 @@ class Grass{
 	        vertexR2x = other.vertexR2x;
 	        vertexR2y = other.vertexR2y;
 		}
-		void translateX(float t){// t is translation factor
+		void translateX(float t){	// t is translation factor
 			vertexTipx += t;
 	        vertexBase1x += t;
 	        vertexBase2x += t;
@@ -79,5 +82,9 @@ class Grass{
 		Grass changeBase(float a, float b){
 			vertexBase1x = a;
 			vertexBase2x = b;
+		}
+		
+		Grass changeTip(float y){
+			vertexTipy = y;
 		}
 };

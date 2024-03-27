@@ -15,6 +15,7 @@ void translate(GLfloat upperCurve[3][3], GLfloat lowerCurve[3][3], float tCurve1
 		
 	if(t < TANK_RIGHT - 0.3 && s == true){
 		t = t + 0.0009;
+		//t += 0.005;
 		y = y;
 		for (i = 0; i < 3; ++i){ //transpose original curve
 			for (j = 0; j < 3; ++j) {
@@ -48,6 +49,7 @@ void translate(GLfloat upperCurve[3][3], GLfloat lowerCurve[3][3], float tCurve1
 	else if(t > TANK_LEFT - 0.3){
 		s = false;
 		t = t - 0.0009;
+		//t = t - 0.005;
 		y = -y - 4;
 		for (i = 0; i < 3; ++i){ //transpose original curve
 			for (j = 0; j < 3; ++j) {
@@ -55,7 +57,7 @@ void translate(GLfloat upperCurve[3][3], GLfloat lowerCurve[3][3], float tCurve1
 	    		l[j][i] = tCurve2[i][j];
 	   		}
 		}
-		for(i = 0; i < 3;i++){
+		for(i = 0; i < 3;i++){	// change direction
 			for(j = 0; j < 3;j++){
 				uCurve[i][j] = 0;
 				lCurve[i][j] = 0;
