@@ -14,8 +14,8 @@ void display() {
 	grass();
     
     //glLoadIdentity();
-    translate(upperCurve1, lowerCurve1, u1, l1, -20, -0.49);
-    translate(upperCurve2, lowerCurve2, u2, l2, 10, -0.21);
+    translate(upperCurve1, lowerCurve1, u1, l1, 2, -0.49);
+    translate(upperCurve2, lowerCurve2, u2, l2, 15, -0.21);
     
     glFlush();
 }
