@@ -8,44 +8,29 @@ struct sin_wave{
     float k,w,A,phi;
 };
 
-sin_wave w1 = {5, 0.3, 0.16, 90};
-sin_wave w2 = {5, 0.3, 0.15, 90};
-float time=0.0;
+sin_wave w1 = {1.3, 0.3, 0.5, 90};
+float time = 0.0;
 
-
-void wave()
-{
-	glColor3f(0.3f, 0.92f, 1.0f);
-	//glColor3f(0.529f, 0.808f, 0.98f);
-    glBegin(GL_TRIANGLE_FAN);
-    //glColor3f(0.529f, 0.808f, 0.922f);
-    for(float x = -5.25 ; x < 5.3 ; x+=0.4)
-    {
-        float y = wave_ordinate(w1.k,w1.w,w1.A,w1.phi,x);
-        glVertex2f(x,y+7.5);
+void wave1(sin_wave w, float yc){
+    glBegin(GL_POLYGON);
+    for(float x = -5.25 ; x < 5.3 ; x+=0.1){
+        float y = wave_ordinate(w.k,w.w,w.A,w.phi,x);
+        glVertex2f(x,y + yc);
     }
-    glEnd();
-    //glColor3f(0.0f, 0.749f, 1.0f);
-    glColor3f(0.3f, 0.92f, 1.0f);
-	glBegin(GL_POLYGON);
-        glVertex2f(-5.28, 0.2);
-        glVertex2f(-5.28, 7.57);
-        glVertex2f(5.28, 7.57);
-        glVertex2f(5.28, 0.2);
-    glEnd();
-   //glColor3f(0.2f, 0.749f, 0.97f);
-    glBegin(GL_LINE_STRIP);
-    for(float x = -5.25 ; x < 5.3 ; x+=0.5)
-    {
-        float y = wave_ordinate(w2.k,w2.w,w2.A,w2.phi,x);
-        glVertex2f(x,y+7.5);
-        
-        
-    }
-
     glEnd();
 }
+void wave(){
+	glColor4f(0.0f, 0.749f, 1.0f, 0.1f);
+	wave1(w1, 7.25);
 
+	glBegin(GL_POLYGON);
+        glVertex2f(-5.28, 0.2);
+        glVertex2f(-5.28, 7.595);
+        glVertex2f(5.28, 7.595);
+        glVertex2f(5.28, 0.2);
+    glEnd();
+	
+}
 void timer(int)
 {
 	time+=0.9;
@@ -80,8 +65,7 @@ class Bubble {
 		}
 		void render ()
 		{
-			//glColor3f(0, 0, 0);
-			glColor4f(1, 1, 1, 0.5);
+			glColor4f(0, 0, 0, 0.1);
 			glBegin(GL_TRIANGLE_FAN);
 			circleFunc(2*r,posx,posy);
 			glEnd();
@@ -94,7 +78,7 @@ class Bubble {
 			}
 			else
 			{
-				posy +=0.001;
+				posy +=0.0045;
 			}
 		}
 };

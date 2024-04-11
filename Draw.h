@@ -7,8 +7,6 @@ void drawCurve(GLfloat curve[3][3], float color) {
         a = color / 80;
         float x = (1 - u) * (1 - u) * curve[0][0] + 2 * (1 - u) * u * curve[1][0] + u * u * curve[2][0];
         float y = (1 - u) * (1 - u) * curve[0][1] + 2 * (1 - u) * u * curve[1][1] + u * u * curve[2][1];
-        //glColor3f(1 - color*a/300, 0.0 + a*a, 0.4-a);
-        //glColor3f(1 - color*a, 0.0 + a*a, 0.6 + a);
         glColor3f(0.7 + a*a,  a/2, 1- color*a);
 		glVertex2f(x, y);
 		color += 1;
@@ -92,16 +90,12 @@ void fish(GLfloat upperCurve[3][3], GLfloat lowerCurve[3][3], float x, float y, 
 
     // Draw fish tail
     glBegin(GL_POLYGON);
-    //glColor3f(0.0, 0.1, 0.5 + color/2);
     glColor3f(1-color/100, 0.0, 0.5 + color/2);
     glVertex2f(upperCurve[0][0], upperCurve[0][1]);          // Tail base
-    //glColor3f(0.1, 0.1, 0.5 + color/3);
     glColor3f(1, 0.6, 0.8 + color/3);
     glVertex2f(upperCurve[0][0] - 1.5*x, upperCurve[0][1] + 1.5*x);  // Tail tip
-    //glColor3f(0.0, 0.1 + color/3, 0.5 + color/4);
     glColor3f(0.5 + color/10, 0.9 + color/5, 0.9);
     glVertex2f(upperCurve[0][0] - 0.95*x, upperCurve[0][1]);
-    //glColor3f(0.0, 0.1, 0.5 + color/5);
     glColor3f(1, 0.8, 0.5 + color/5);
     glVertex2f(upperCurve[0][0] - 1.5*x, upperCurve[0][1] - 1.5*x);  // Tail tip
     glEnd();
@@ -163,8 +157,6 @@ void drawSurface(GLfloat TC[4][2],GLfloat TT[4][2]){
 
 void tankTable(){
 	//table top
-//	drawSurface(tankCoord,tableTop);
-//	drawTank(tankCoord,tankCoord1);
 	rect(tableTop, 0, 0, 0);
 	//table legs 
 	rect(tableLeg, 0, 0, 0);	//Left Front Leg
