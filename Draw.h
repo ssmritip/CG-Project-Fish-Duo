@@ -176,4 +176,7 @@ void tankTable(){
 	glTranslatef(shift[2], 0, 1);
 	glScalef(1, sy, 1);
 	rect(tableLeg, 0, 0, 0);	//Right Back Leg
+	glTranslatef(1.5, 0, 1);
+	glTranslatef(-shift[1], 0, -1);
+	glTranslatef(-shift[0], 0, -1);
 }
