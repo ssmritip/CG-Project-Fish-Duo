@@ -2,8 +2,8 @@
 #define TANK_LEFT 0
 
 // coordinates of fish 1
-GLfloat upperCurve1[3][3] = { {-2.5, 5, 1.0}, {-1.5, 6.2, 1.0}, {-0.5, 5, 1.0} };
-GLfloat lowerCurve1[3][3] = { {-2.5, 5, 1.0}, {-1.5, 3.8, 1.0}, {-0.5, 5, 1.0} };
+GLfloat upperCurve1[3][3] = { {-2.5, 4.7, 1.0}, {-1.5, 5.9, 1.0}, {-0.5, 4.7, 1.0} };
+GLfloat lowerCurve1[3][3] = { {-2.5, 4.7, 1.0}, {-1.5, 3.4, 1.0}, {-0.5, 4.7 , 1.0} };
 
 // coordinates of fish 2
 GLfloat upperCurve2[3][3] = { {-1.3, 3.0, 1.0}, {0.0, 4.15, 1.0}, {1.3, 3.0, 1.0} };

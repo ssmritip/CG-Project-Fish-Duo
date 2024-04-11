@@ -9,20 +9,25 @@ void display() {
     glLoadIdentity();
     gluOrtho2D(-10.0, 10.0, -10.0, 10.0);
 	glMatrixMode(GL_MODELVIEW);
-	 glLoadIdentity(); 
-	 
-	 tankTable();
+	//glLoadIdentity(); 
+	
+	glLoadIdentity(); 
+	tankTable();
+	drawSurface(tankCoord,tableTop);
     wave();
-   glLoadIdentity();
-	grass();
-     
-     bubble ();
+    glLoadIdentity(); 
+    
+	drawTank(tankCoord,tankCoord1);
     glLoadIdentity();
+	grass();
+	
+    bubble();
    time+=0.01;
    glLoadIdentity();
-    translate(upperCurve1, lowerCurve1, u1, l1, 2, -0.49);
-    translate(upperCurve2, lowerCurve2, u2, l2, 15, -0.21);
-   
+//    translate(upperCurve1, lowerCurve1, u1, l1, 2, -0.49);
+//    translate(upperCurve2, lowerCurve2, u2, l2, 15, -0.21);
+   translate(upperCurve1, lowerCurve1, u1, l1, -50, -0.49);
+	translate(upperCurve2, lowerCurve2, u2, l2, 0, -0.21);
     glFlush();
 }
 
